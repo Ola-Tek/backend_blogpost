@@ -16,6 +16,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
+    },
+    resetPassword: {
+        type: String, //stores the hashed password
+    },
+    resetPasswordExpire: {
+        type: Date, //stores the time for expiration
     }
 });
 
@@ -34,4 +40,4 @@ userSchema.methods.comparePassword = function (candidatePassword) {
     return bcrypt.compare(candidatePassword, this.password);
 };
 
-module.exports = mongoose.model('user', userSchema);
+module.exports = mongoose.model('User', userSchema);
